@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "dist",
+    "lib": ["esnext"],
+    "types": ["node"],
+    "module": "commonjs",
+    "emitDecoratorMetadata": true,
+    "sourceMap": true,
+    "target": "es2020",
+    "skipLibCheck": true
+  },
+  "include": ["src"],
+  "exclude": ["**/*.spec.ts", "**/*.test.ts"]
+}
