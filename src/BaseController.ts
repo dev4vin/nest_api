@@ -1,9 +1,8 @@
 import { hasOwnProperty, Type } from '@dev4vin/commons';
-import { Api404Response, ApiModel200Response, ApiPaginatedResponse, InfoType, Model, PaginatedEntity, PaginateDto } from '@dev4vin/nest_data';
+import { Api404Response, ApiModel200Response, InfoType, Model, PaginatedEntity, PaginateDto } from '@dev4vin/nest_data';
 import { Body, Delete, Get, NotFoundException, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
 import { ApiBody, ApiExtraModels, ApiNotFoundResponse, ApiTags, PartialType } from '@nestjs/swagger';
 import { ApiGate } from './base.controller';
-import { BaseServiceImpl } from './base.service';
 import { BaseView, BaseViewOptions, FnRole, FnType } from './base.view';
 import { AbstractService } from './BaseService';
 
@@ -48,7 +47,7 @@ export const BaseController = <T extends Model>(ref: { new(): T } | BaseViewOpti
   // @ts-ignore
   @ApiTags(`${classRef.name.toLowerCase()}`)
   // @ts-ignore
-  //@ApiExtraModels(PaginatedEntity, classRef)
+  @ApiExtraModels(PaginatedEntity, classRef)
   class BaseControllerHost extends BaseView<T> {
     constructor(baseService: AbstractService<T>) {
       super(baseService);

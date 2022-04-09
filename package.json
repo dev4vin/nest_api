@@ -3,11 +3,11 @@
   "version": "0.0.2",
   "description": "Utilities for building nest js backends faster",
   "bugs": {
-    "url": "https://github.com/dev4vin/nest-api-helpers/issues"
+    "url": "https://github.com/dev4vin/nest_api.git/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dev4vin/nest-api-helpers"
+    "url": "https://github.com/dev4vin/nest_api.gitv"
   },
   "license": "MIT",
   "author": "Peter Vincent",
@@ -21,17 +21,16 @@
     "build": "tsc --project tsconfig.lib.json'",
     "test": "jest'"
   },
-  "peerDependencies": {
-    "@dev4vin/commons": "^0.0.1",
-    "@dev4vin/nest_auth": "^0.0.1",
-    "@dev4vin/nest_data": "^0.0.1",
-    "@nestjs/common": "^8.0.0",
+  "dependencies": {
+    "@dev4vin/commons": "^0.0.2",
+    "@dev4vin/nest_auth": "^0.0.4",
+    "@dev4vin/nest_data": "^0.0.3",
     "@nestjs/graphql": "^10.0.5",
-    "@nestjs/mapped-types": "*",
-    "@nestjs/passport": "^8.0.1",
     "@nestjs/swagger": "^5.1.4",
-    "passport-jwt": "^4.0.0",
     "typeorm": "^0.2.24"
+  },
+  "peerDependencies": {
+    "@nestjs/common": "^8.0.0"
   },
   "publishConfig": {
     "access": "public"

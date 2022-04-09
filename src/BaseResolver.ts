@@ -3,7 +3,7 @@ import { InfoType, Model, Paginated, PaginateDto } from '@dev4vin/nest_data';
 import { Args, InputType, Int, Mutation, ObjectType, PartialType, Query, Resolver } from '@nestjs/graphql';
 import { GqlGate } from './base.resolver';
 import { BaseServiceImpl } from './base.service';
-import { BaseView, BaseViewImpl, BaseViewOptions, FnRole, FnType } from './base.view';
+import { BaseView, BaseViewOptions, FnRole, FnType } from './base.view';
 
 export function BaseResolver<T extends Model>(ref: { new(): T } | BaseViewOptions<{ new(): T }>): { new(baseService: BaseServiceImpl<T>): Type } {
   const {
