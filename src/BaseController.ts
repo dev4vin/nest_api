@@ -3,6 +3,7 @@ import { Api404Response, ApiModel200Response, InfoType, Model, PaginatedEntity, 
 import { Body, Delete, Get, NotFoundException, Param, ParseIntPipe, Patch, Post, Query } from '@nestjs/common';
 import { ApiBody, ApiExtraModels, ApiNotFoundResponse, ApiTags, PartialType } from '@nestjs/swagger';
 import { ApiGate } from './base.controller';
+import { BaseServiceImpl } from './base.service';
 import { BaseView, BaseViewOptions, FnRole, FnType } from './base.view';
 import { AbstractService } from './BaseService';
 
@@ -16,7 +17,7 @@ import { AbstractService } from './BaseService';
  * @param {FnRole[]} [roleFns=[]]
  * @return {*}  {Type<BaseViewImpl<T>>}
  */
-export const BaseController = <T extends Model>(ref: { new(): T } | BaseViewOptions<{ new(): T }>): { new(baseService: AbstractService<T>): Type } => {
+export const BaseController = <T extends Model, S extends BaseServiceImpl<T> = BaseServiceImpl<T>>(ref: { new(): T } | BaseViewOptions<{ new(): T }>): { new(baseService: S): Type } => {
   const {
     classRef, publicFns, roleFns, hiddenFns
   }: {
@@ -128,6 +129,6 @@ export const BaseController = <T extends Model>(ref: { new(): T } | BaseViewOpti
       hideFn('createOne');
     }
   });
-
+ // @ts-ignore
   return BaseControllerHost;
 }

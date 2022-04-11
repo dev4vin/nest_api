@@ -1,6 +1,6 @@
 import { Type } from '@dev4vin/commons';
+import { BaseServiceImpl } from './base.service';
 import { BaseViewOptions } from './base.view';
-import { AbstractService } from './BaseService';
 /**
  *
  *
@@ -15,4 +15,4 @@ export declare const BaseController: <T extends {
     id?: number | undefined;
     createdAt?: Date | undefined;
     updatedAt?: Date | undefined;
-}>(ref: (new () => T) | BaseViewOptions<new () => T>) => new (baseService: AbstractService<T>) => Type;
+}, S extends BaseServiceImpl<T> = BaseServiceImpl<T>>(ref: (new () => T) | BaseViewOptions<new () => T>) => new (baseService: S) => Type;

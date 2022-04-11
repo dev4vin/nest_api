@@ -1,38 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ApiGate = exports.ApiResource = exports.Authenticated = exports.AuthOptions = void 0;
+exports.ApiGate = exports.ApiResource = void 0;
 const nest_auth_1 = require("@dev4vin/nest_auth");
 const common_1 = require("@nestjs/common");
 const swagger_1 = require("@nestjs/swagger");
-exports.AuthOptions = {
-    type: 'http',
-    scheme: 'bearer',
-    bearerFormat: 'JWT',
-    name: 'JWT',
-    description: 'Enter token',
-    in: 'header',
-    docName: 'JWT-auth'
-};
-const Authenticated = (guards = [], summary = '') => {
-    const decorators = [];
-    if (guards.length > 0) {
-        decorators.push((0, common_1.UseGuards)((0, nest_auth_1.RoleGuard)(...guards)));
-        decorators.push((0, swagger_1.ApiBearerAuth)(exports.AuthOptions.docName));
-        decorators.push((0, swagger_1.ApiForbiddenResponse)({ description: 'Forbidden.' }));
-        decorators.push((0, swagger_1.ApiOperation)({
-            summary: `Guards ${guards.map((g) => g.toString()).join(', ')}, ${summary}`
-        }));
-    }
-    else {
-        decorators.push((0, common_1.UseGuards)(nest_auth_1.JwtAuthGuard));
-        decorators.push((0, swagger_1.ApiBearerAuth)(exports.AuthOptions.docName));
-        decorators.push((0, swagger_1.ApiOperation)({
-            summary: `${summary}`
-        }));
-    }
-    return (0, common_1.applyDecorators)(...decorators);
-};
-exports.Authenticated = Authenticated;
 const ApiResource = () => {
     return (0, common_1.applyDecorators)(swagger_1.ApiNotFoundResponse, swagger_1.ApiNoContentResponse, swagger_1.ApiOkResponse, swagger_1.ApiForbiddenResponse);
 };
@@ -51,7 +22,7 @@ const ApiGate = (fnType, fnTypes = [], roleFns = []) => {
                 }
             });
         });
-        decorators.push((0, swagger_1.ApiBearerAuth)(exports.AuthOptions.docName));
+        decorators.push((0, swagger_1.ApiBearerAuth)(nest_auth_1.AuthOptions.docName));
         if (guards.length >= 1) {
             decorators.push((0, swagger_1.ApiOperation)({
                 summary: `Guards ${guards.map((g) => g.toString()).join(', ')}`

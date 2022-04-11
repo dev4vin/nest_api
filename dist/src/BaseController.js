@@ -52,10 +52,7 @@ const BaseController = (ref) => {
      * @extends {BaseView<T>}
      */
     // @ts-ignore
-    let BaseControllerHost = 
-    // @ts-ignore
-    //@ApiExtraModels(PaginatedEntity, classRef)
-    class BaseControllerHost extends base_view_1.BaseView {
+    let BaseControllerHost = class BaseControllerHost extends base_view_1.BaseView {
         constructor(baseService) {
             super(baseService);
         }
@@ -154,8 +151,8 @@ const BaseController = (ref) => {
     BaseControllerHost = __decorate([
         (0, swagger_1.ApiTags)(`${classRef.name.toLowerCase()}`)
         // @ts-ignore
-        //@ApiExtraModels(PaginatedEntity, classRef)
         ,
+        (0, swagger_1.ApiExtraModels)(nest_data_1.PaginatedEntity, classRef),
         __metadata("design:paramtypes", [BaseService_1.AbstractService])
     ], BaseControllerHost);
     function hideFn(name) {
@@ -175,6 +172,7 @@ const BaseController = (ref) => {
             hideFn('createOne');
         }
     });
+    // @ts-ignore
     return BaseControllerHost;
 };
 exports.BaseController = BaseController;
