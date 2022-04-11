@@ -1,6 +1,6 @@
 {
   "name": "@dev4vin/nest_api",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Utilities for building nest js backends faster",
   "bugs": {
     "url": "https://github.com/dev4vin/nest_api.git/issues"
